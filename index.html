@@ -2,42 +2,227 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <title>CrossStudyLinkHK | DSE 升學規劃與名師對接</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossStudyLink | DSE 一站式升學規劃平台</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; }
-        .hero { background: #f4f7f6; padding: 60px 20px; text-align: center; }
-        .hero h1 { font-size: 2.5em; color: #2c3e50; }
-        .features { display: flex; justify-content: space-around; padding: 40px 20px; }
-        .feature-box { width: 30%; padding: 20px; background: #fff; border: 1px solid #ddd; border-radius: 8px; }
-        .cta-section { text-align: center; padding: 50px; background: #2c3e50; color: white; }
-        .btn { display: inline-block; padding: 15px 40px; background: #e67e22; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; }
+        /* 全局基礎樣式 */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif; 
+            line-height: 1.6; 
+            color: #2d3748; 
+            background: #f7fafc; 
+        }
+        
+        /* 導航與頭部 */
+        .hero { 
+            background: linear-gradient(135deg, #1a365d 0%, #2a4365 100%); 
+            color: white; 
+            padding: 80px 20px; 
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .hero h1 { font-size: 2.8em; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; }
+        .hero p { font-size: 1.2em; max-width: 600px; margin: 0 auto 30px auto; color: #e2e8f0; }
+        
+        /* 主體容器 */
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        
+        h2 { text-align: center; margin-bottom: 35px; font-size: 2em; color: #1a202c; position: relative; }
+        h2::after { content: ''; width: 50px; height: 4px; background: #3182ce; display: block; margin: 10px auto 0 auto; border-radius: 2px; }
+        
+        /* 核心服務與資源網格 */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); 
+            text-align: center; 
+            transition: all 0.3s ease; 
+            border: 1px solid #edf2f7;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .card .icon-placeholder { width: 60px; height: 60px; background: #ebf8ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; font-size: 24px; color: #3182ce; }
+        .card h3 { font-size: 1.4em; margin-bottom: 12px; color: #2d3748; }
+        .card p { color: #718096; font-size: 0.95em; margin-bottom: 20px; }
+        
+        /* 導師招募板塊 - 側邊或底部精美橫幅 */
+        .recruitment-banner { 
+            background: #fffdf5; 
+            border: 1px solid #fef3c7; 
+            border-left: 6px solid #d97706; 
+            padding: 30px; 
+            border-radius: 16px; 
+            margin: 50px 0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .recruitment-content { display: flex; flex-direction: column; gap: 15px; }
+        .recruitment-title { font-size: 1.4em; font-weight: 700; color: #92400e; display: flex; align-items: center; gap: 10px; }
+        .recruitment-text { color: #b45309; font-size: 1em; }
+        .qq-contact { 
+            display: inline-flex; 
+            align-items: center; 
+            background: #e1f5fe; 
+            color: #0288d1; 
+            padding: 8px 16px; 
+            border-radius: 8px; 
+            font-size: 0.95em; 
+            font-weight: bold; 
+            margin-top: 10px;
+            width: fit-content;
+        }
+        .qq-icon { width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; }
+        
+        /* 社群引流矩陣 */
+        .social-matrix { background: #1a202c; color: white; padding: 60px 20px; text-align: center; border-radius: 30px; margin-top: 40px; }
+        .social-matrix h2 { color: white; }
+        .social-matrix h2::after { background: #4fd1c5; }
+        .social-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .social-item { 
+            background: #2d3748; 
+            color: #e2e8f0; 
+            padding: 12px 24px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-size: 1em; 
+            font-weight: 500; 
+            transition: all 0.2s; 
+            border: 1px solid #4a5568;
+        }
+        .social-item:hover { background: #4a5568; color: white; transform: scale(1.05); }
+        .social-item.empty-link { opacity: 0.5; cursor: not-allowed; border-style: dashed; }
+        
+        /* 通用按鈕 */
+        .btn { 
+            display: inline-block; 
+            padding: 12px 28px; 
+            background: #3182ce; 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 600; 
+            border-radius: 50px; 
+            transition: background 0.2s; 
+            box-shadow: 0 4px 6px rgba(49, 130, 206, 0.2);
+        }
+        .btn:hover { background: #2b6cb0; }
+        .btn-secondary { background: #4a5568; box-shadow: 0 4px 6px rgba(74, 85, 104, 0.2); }
+        .btn-secondary:hover { background: #2d3748; }
+        .btn-warning { background: #d97706; box-shadow: 0 4px 6px rgba(217, 119, 6, 0.2); }
+        .btn-warning:hover { background: #b45309; }
+        .btn-sm { padding: 8px 20px; font-size: 0.9em; }
+        
+        footer { text-align: center; padding: 40px 20px; color: #a0aec0; font-size: 0.9em; }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>DSE 路上，你不必孤軍奮戰</h1>
-        <p>CrossStudyLinkHK —— 連結頂尖師資與精準規劃，助你鎖定心儀大學。</p>
-    </div>
-    
-    <div class="features">
-        <div class="feature-box">
-            <h3>精準師資對接</h3>
-            <p>線上篩選名師，線下課堂指導，解決你的學習盲點。</p>
+
+    <!-- 頂部 Hero 區域 -->
+    <header class="hero">
+        <h1>CrossStudyLink</h1>
+        <p>專業 DSE 升學資源與師資對接平台，全面打通線上線下教育，規劃你的專屬奪星之路。</p>
+        <a href="#" class="btn">立即預約免費學科評估</a>
+    </header>
+
+    <div class="container">
+        
+        <!-- 核心服務區塊 -->
+        <h2>我們提供的服務</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="icon-placeholder">🌐</div>
+                <h3>線上線下全方位教育</h3>
+                <p>打破地域限制，彈性切換高效線上授課與線下精準面對面輔導，完美適應你的學習節奏。</p>
+            </div>
+            <div class="card">
+                <div class="icon-placeholder">📊</div>
+                <h3>一站式升學規劃</h3>
+                <p>深度結合 JUPAS 歷年錄取數據與各大專院校最新政策，為你量身打造最穩妥且進取的升學策略藍圖。</p>
+            </div>
+            <div class="card">
+                <div class="icon-placeholder">✍️</div>
+                <h3>專業名師改卷</h3>
+                <p>由資深導師親自批改日常及模擬試卷，精確指出答題盲點與扣分細節，傳授解釋題滿分核心邏輯。</p>
+            </div>
+            <div class="card">
+                <div class="icon-placeholder">💡</div>
+                <h3>24/7 學習疑問解答</h3>
+                <p>遇到難題不再卡關！隨時在線提交你的學科疑問，專業團隊快速回應，打通所有知識點。 </p>
+            </div>
+            <div class="card">
+                <div class="icon-placeholder">🤝</div>
+                <h3>優質導師中介配對</h3>
+                <p>嚴格把控細節，根據學生的實際情況與家長需求，精準匹配最適合的 Grade 1 至 5** 頂尖優秀師資。</p>
+            </div>
+            <div class="card">
+                <div class="icon-placeholder">🎯</div>
+                <h3>高效學習規劃</h3>
+                <p>拒絕填鴨式教學，採用思維導圖式清晰框架，幫助你在最短時間內串聯多本知識點，學會舉一反三。</p>
+            </div>
         </div>
-        <div class="feature-box">
-            <h3>升學策略規劃</h3>
-            <p>深度分析 JUPAS 志願，量身打造你的升學護航方案。</p>
+
+        <!-- 資訊與資料庫專區 (Notion) -->
+        <h2>DSE 乾貨與政策資源中心</h2>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));">
+            <div class="card">
+                <div class="icon-placeholder">📚</div>
+                <h3>DSE 學習資料庫</h3>
+                <p>收錄各學科精華筆記、經典真題解析、思維導圖框架以及奪星必備乾貨，縮短你的摸索期。</p>
+                <a href="https://rogue-molecule-986.notion.site/Dse-3826f9706fc28080ac92cb36ff05f378" target="_blank" class="btn btn-secondary">進入學習資料庫</a>
+            </div>
+            <div class="card">
+                <div class="icon-placeholder">📢</div>
+                <h3>DSE 政策資料庫</h3>
+                <p>即時同步考評局最新動態、各大高校入學標準變更、最新選科指引，助你精準掌握政策走向。</p>
+                <a href="https://rogue-molecule-986.notion.site/Dse-3826f9706fc28080ac92cb36ff05f378" target="_blank" class="btn btn-secondary">查看政策資訊</a>
+            </div>
         </div>
-        <div class="feature-box">
-            <h3>學習資源中心</h3>
-            <p>獨家 DSE 備試乾貨，隨時隨地提升競爭力。</p>
+
+        <!-- 導師入駐板塊 -->
+        <div class="recruitment-banner">
+            <div class="recruitment-content">
+                <div class="recruitment-title">💡 推薦導師入駐計劃</div>
+                <p class="recruitment-text">
+                    我們正在尋找熱愛教學、專業務實的優秀 DSE 導師夥伴！如果你想專注於高質量教學，歡迎加入我們的生態。
+                    <strong>若成功推薦或成功單子成交，即享透明的分成回報！</strong>
+                </p>
+                <div style="margin-top: 10px; display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvJnR0dWpP82qXoKmGYVZdSdniHwmhZNxtqq6N0qU48iXz4g/viewform?usp=header" target="_blank" class="btn btn-warning btn-sm">立即填表申請入駐</a>
+                    
+                    <div class="qq-contact">
+                        <!-- SVG QQ Icon Inline -->
+                        <svg class="qq-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.12 14.88c-.68 0-1.24-.56-1.24-1.24s.56-1.24 1.24-1.24 1.24.56 1.24 1.24-.56 1.24-1.24 1.24zm0-3.8c-.68 0-1.24-.56-1.24-1.24s.56-1.24 1.24-1.24 1.24.56 1.24 1.24-.56 1.24-1.24 1.24zm4.44 3.8c-.68 0-1.24-.56-1.24-1.24s.56-1.24 1.24-1.24 1.24.56 1.24 1.24-.56 1.24-1.24 1.24zm0-3.8c-.68 0-1.24-.56-1.24-1.24s.56-1.24 1.24-1.24 1.24.56 1.24 1.24-.56 1.24-1.24 1.24z"/>
+                        </svg>
+                        官方唯一指定 QQ 諮詢：3951141963
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
-    <div class="cta-section">
-        <h2>準備好在 DSE 取得突破了嗎？</h2>
-        <p>留下聯絡方式，領取「DSE 升學諮詢評估」一次</p>
-        <a href="你的騰訊問卷或 Google 表單連結" class="btn">免費預約諮詢</a>
-    </div>
+    <!-- 全網矩陣引流區塊 -->
+    <section class="social-matrix">
+        <div class="container">
+            <h2>追蹤全網引流矩陣</h2>
+            <p style="color: #a0aec0; margin-bottom: 20px;">關注我們的官方社群帳號，獲取每日最新最熱門的 DSE 升學考題乾貨</p>
+            <div class="social-grid">
+                <a href="#" class="social-item empty-link">微信公眾號（暫未配置）</a>
+                <a href="#" class="social-item empty-link">小紅書（暫未配置）</a>
+                <a href="#" class="social-item empty-link">抖音（暫未配置）</a>
+                <a href="#" class="social-item empty-link">Instagram（暫未配置）</a>
+                <a href="#" class="social-item empty-link">Threads（暫未配置）</a>
+                <a href="#" class="social-item empty-link">Facebook（暫未配置）</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CrossStudyLink. All Rights Reserved. 專業 DSE 教育對接服務</p>
+    </footer>
+
 </body>
 </html>
